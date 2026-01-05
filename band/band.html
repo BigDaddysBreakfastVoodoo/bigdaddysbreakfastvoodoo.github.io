@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Big Daddy's Breakfast Voodoo - Biography and Background Stories</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="All about Big Daddy's Breakfast Voodoo. Biography and background stories.">
+  <meta property="og:title" content="Biography – Big Daddy's Breakfast Voodoo">
+  <meta property="og:description" content="Biography and background stories">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <h1>Big Daddy's Breakfast Voodoo</h1>
+
+  <!-- =========================
+       Band Member Selection
+       ========================= -->
+  <section class="section band-members-section">
+    <h2>Select a Band Member</h2>
+
+    <div class="band-members">
+      <img src="bart.jpg" alt="Bart – Drums" data-member="bart">
+      <img src="mike.jpg" alt="Mike – Guitar & Vocals" data-member="mike">
+      <img src="peter.jpg" alt="Peter – Bass" data-member="peter">
+    </div>
+
+    <div class="ticker-container">
+      <div class="ticker-track" id="memberTicker">
+        <span>Select a band member</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       About the Band
+       ========================= -->
+  <section class="section about-band">
+    <h2>About the Band</h2>
+
+    <p>
+      Big Daddy’s Breakfast Voodoo was never built in a straight line. 
+      It grew out of jam sessions, bad ideas that turned out right, 
+      riffs that refused to leave, and rhythms that felt better than thinking.
+      Somewhere in the swamp where Stoner Blues meets raw nerve,
+      Mike (guitar & vocals), Peter (bass), and Bart (drums) found a sound that stuck.
+    </p>
+
+    <p>
+      Since 2013, the band has been shaping songs the same way they live them — 
+      hands-on, instinct-driven, and slightly unhinged.
+      Hand-built amps, guitars, and pedals feed a blues core that stays honest, 
+      while rock, funk, punk, and whatever crawls out of the mud get pulled into the mix.
+      Nothing is planned too far ahead, and nothing is polished to death.
+    </p>
+
+    <p>
+      On stage and on record, the music comes straight from lived experience: 
+      workdays, road miles, family chaos, bad choices, hindsight, and the occasional revelation.
+      Playing regularly since 2015 in bars, motorcycle gatherings, and festivals,
+      Big Daddy’s Breakfast Voodoo delivers a cure for predictable blues.
+    </p>
+
+    <p>
+      This is who we are. If you get it, you’re already in.
+    </p>
+  </section>
+
+  <!-- =========================
+       Navigation
+       ========================= -->
+  <div class="button-container">
+    <a href="../index.html" class="button">Back to Home</a>
+    <a href="../music/music.html" class="button">Music</a>
+  </div>
+
+  <!-- =========================
+       Ticker Script
+       ========================= -->
+  <script>
+    const memberData = {
+      bart: `Bart [pronounced BAHRT] a.k.a hey boy! - dead-raising drums. Escaped from a mental institution at twelve and has not aged a day since (though his demon-like offspring might change that). Surviving by rhythmic assaults and sheer chaos, Bart was welcomed by Peter and Mike on the promise that in-laws were shared to ease pressure. The rest is history...`,
+      mike: `Mike [pronounced MAYHK] a.k.a Ginger or Soulless - Produces insane guitar riffs and hypnotizing vocals. Nobody knows where he came from. Some say he emerged from the remains of a dead harlot, chased by a pack of musical dogs. The guitar became part of his anatomy at birth; the microphone was thrust upon him by Peter and Bart.`,
+      peter: `Peter [PEE-ter] a.k.a Nonkel Peer - Player of mesmerizing bass grooves. Born as the eldest son of a wealthy family, he rebelled and left home. After wandering aimlessly for years, he was adopted by a pack of dogs that somehow played awesome music. Here, Peter learned to master the bass like a madman.`
+    };
+
+    const memberImgs = document.querySelectorAll('.band-members img');
+    const ticker = document.getElementById('memberTicker');
+
+    memberImgs.forEach(img => {
+      img.addEventListener('click', () => {
+        // Stop animation
+        ticker.style.animation = 'none';
+
+        // Update text
+        ticker.innerHTML = `<span>${memberData[img.dataset.member]}</span>`;
+
+        // Force reflow to restart animation
+        void ticker.offsetWidth;
+        ticker.style.animation = '';
+
+        // Update visual states
+        memberImgs.forEach(i => {
+          i.classList.remove('active');
+          i.classList.add('inactive');
+        });
+        img.classList.add('active');
+        img.classList.remove('inactive');
+      });
+    });
+  </script>
+
+</body>
+</html>

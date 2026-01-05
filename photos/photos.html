@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Big Daddy's Viewing Box</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Images by Big Daddy's Breakfast Voodoo. Gigs, rehearsals, recordings and random stuff from the Dutch swamp.">
+  <meta property="og:title" content="Images – Big Daddy's Breakfast Voodoo">
+  <meta property="og:description" content="Images of gigs, rehearsals, recordings and random stuff">
+  <link rel="stylesheet" href="../css/style.css">
+
+  <style>
+    /* Pointer cursor for interactive tiles */
+    .photo-tile {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Big Daddy's Viewing Box</h1>
+
+  <!-- Slideshow Introduction -->
+  <div class="section">
+    <h2>Into the Viewing Box</h2>
+    <p>
+      Peer into the box and witness fragments of our past.<br>
+      Sweat-soaked stages, smoky backrooms, cracked rehearsal floors, roadside rituals,
+      and nights that dissolved into noise sometime after 2015 — or maybe earlier.
+    </p>
+    <p>
+      The images drift freely, summoned at random, never repeating the same spell twice.
+    </p>
+  </div>
+
+  <!-- PHOTO COLLAGE -->
+  <section class="photo-collage">
+    <div class="photo-tile tile-1"><img alt="Live photo 1"></div>
+    <div class="photo-tile tile-2"><img alt="Live photo 2"></div>
+    <div class="photo-tile tile-3"><img alt="Live photo 3"></div>
+    <div class="photo-tile tile-4"><img alt="Live photo 4"></div>
+    <div class="photo-tile tile-5"><img alt="Live photo 5"></div>
+  </section>
+
+  <!-- VIDEO SECTION -->
+  <section class="media-section">
+    <h2>Captured on Moving Film</h2>
+    <p>
+      When Baba Yaga came stompin' around in Breda.
+    </p>
+    <video controls>
+      <source src="video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </section>
+
+  <!-- NAVIGATION -->
+  <div class="button-container">
+    <a href="../index.html" class="button">Back to Home</a>
+    <a href="../music/music.html" class="button">Music</a>
+  </div>
+
+  <!-- SLIDESHOW SCRIPT -->
+  <script>
+    const imageCount = 85;
+    const imagePrefix = "image";
+
+    function randomImage() {
+      const num = Math.floor(Math.random() * imageCount) + 1;
+      return `${imagePrefix}${String(num).padStart(2, '0')}.jpg`;
+    }
+
+    function startTile(tile, interval) {
+      const img = tile.querySelector("img");
+      let timer;
+
+      function swap() {
+        img.style.opacity = 0;
+        setTimeout(() => {
+          img.src = randomImage();
+          img.onload = () => { img.style.opacity = 1; };
+        }, 400);
+      }
+
+      img.src = randomImage();
+      img.style.opacity = 1;
+
+      // Start interval
+      timer = setInterval(swap, interval);
+
+      // Pause on hover
+      tile.addEventListener("mouseenter", () => clearInterval(timer));
+      // Resume on leave
+      tile.addEventListener("mouseleave", () => {
+        timer = setInterval(swap, interval);
+      });
+    }
+
+    // Initialize all tiles with slightly different speeds
+    const tiles = document.querySelectorAll(".photo-tile");
+    tiles.forEach((tile, index) => {
+      const base = 3500;
+      const variance = 1500;
+      const speed = base + Math.random() * variance + index * 500;
+      startTile(tile, speed);
+    });
+  </script>
+
+</body>
+</html>

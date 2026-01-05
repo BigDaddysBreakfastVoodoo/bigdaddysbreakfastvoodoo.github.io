@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Howlin’ from My Porch (Demo, 2015) – Big Daddy's Breakfast Voodoo</title>
+
+  <!-- Mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <meta name="description" content="Howlin’ from My Porch (Demo, 2015) by Big Daddy's Breakfast Voodoo. Raw early demo recordings straight from the swamp. Four tracks, no polish, all grit.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Howlin’ from My Porch (Demo, 2015)">
+  <meta property="og:description" content="Raw early demo recordings. Four tracks, no polish, all grit.">
+  <meta property="og:image" content="cover.jpg">
+  <meta property="og:type" content="music.album">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+<h1>Howlin’ from My Porch (2015)</h1>
+
+<!-- Album Intro -->
+<div class="section">
+  <img src="cover.jpg" alt="Howlin’ from My Porch Demo cover" class="album-cover">
+  <p>
+    Raw demo recordings, straight from the porch jam sessions.<br>
+    Select a track and enjoy:
+  </p>
+</div>
+
+<!-- Track List -->
+<div class="section">
+  <p class="track-list">
+    <span data-track="track01">1. Intro — 0:28</span>
+    <span data-track="track02">2. Huggin’ tha Bowl — 3:18</span>
+    <span data-track="track03">3. Go the Fuck to Sleep — 5:12</span>
+    <span data-track="track04">4. You Dawg — 4:09</span>
+  </p>
+</div>
+
+<!-- Track Content -->
+<section>
+
+  <!-- TRACK 01 -->
+  <div class="track-content" id="track01">
+    <h3>Track 01 – Intro (0:28)</h3>
+    <audio controls>
+      <source src="track01.mp3" type="audio/mpeg">
+    </audio>
+
+    <h3>Behind the Music</h3>
+    <div class="ticker">
+      <div class="ticker-track">
+        <span>
+          No words, just the swamp breathing. Crickets, frogs, birds, and the night alive. 
+          Bart insisted, Mike and Peter reluctantly followed, letting nature set the stage. 
+          A soundscape to tie the songs together, as restless as the swamp itself.
+        </span>
+      </div>
+    </div>
+
+    <h3>Lyrics</h3>
+    <iframe class="lyrics-frame" src="lyrics/track01.txt"></iframe>
+  </div>
+
+  <!-- TRACK 02 -->
+  <div class="track-content" id="track02">
+    <h3>Track 02 – Huggin’ tha Bowl (3:18)</h3>
+    <audio controls>
+      <source src="track02.mp3" type="audio/mpeg">
+    </audio>
+
+    <h3>Behind the Music</h3>
+    <div class="ticker">
+      <div class="ticker-track">
+        <span>
+          Huggin’ tha Bowl — forged during a Hertog Jan night deep in the southern Netherlands, where blacking out became an obligation. 
+          Bart came alive, Mike rolled out the heavy cannons too early, and the evening dissolved fast. 
+          Morning found Mike clutching a bucket, hissing like a broken espresso machine brewing stomach acid. 
+          Laughter, suffering, and survival — huggin’ tha bowl.
+        </span>
+      </div>
+    </div>
+
+    <h3>Lyrics</h3>
+    <iframe class="lyrics-frame" src="lyrics/track02.txt"></iframe>
+  </div>
+
+  <!-- TRACK 03 -->
+  <div class="track-content" id="track03">
+    <h3>Track 03 – Go the Fuck to Sleep (5:12)</h3>
+    <audio controls>
+      <source src="track03.mp3" type="audio/mpeg">
+    </audio>
+
+    <h3>Behind the Music</h3>
+    <div class="ticker">
+      <div class="ticker-track">
+        <span>
+          Go the Fuck to Sleep — a lullaby forged in exhaustion and poor planning. 
+          Borrowing its name from Adam Mansbach’s bedtime book, this song is a plea, a curse, and a truth every sleepless soul knows.
+        </span>
+      </div>
+    </div>
+
+    <h3>Lyrics</h3>
+    <iframe class="lyrics-frame" src="lyrics/track03.txt"></iframe>
+  </div>
+
+  <!-- TRACK 04 -->
+  <div class="track-content" id="track04">
+    <h3>Track 04 – You Dawg (4:09)</h3>
+    <audio controls>
+      <source src="track04.mp3" type="audio/mpeg">
+    </audio>
+
+    <h3>Behind the Music</h3>
+    <div class="ticker">
+      <div class="ticker-track">
+        <span>
+          Bart strikes again — late night, too much booze, reading the room all wrong. 
+          Chaos and mischief wrapped in one wild howl. That’s our drummer.
+        </span>
+      </div>
+    </div>
+
+    <h3>Lyrics</h3>
+    <iframe class="lyrics-frame" src="lyrics/track04.txt"></iframe>
+  </div>
+
+</section>
+
+<!-- Credits -->
+<section class="credits">
+  All songs written and performed by Big Daddy's Breakfast Voodoo.<br>
+  Recorded by Rogier Jansen.<br>
+  Mastered by Ingmar Otter.
+</section>
+
+<!-- Navigation -->
+<div class="button-container">
+  <a href="../../index.html" class="button">Back to Home</a>
+  <a href="../music.html" class="button">Back to Music</a>
+</div>
+
+<!-- Track Selection Script -->
+<script>
+  const trackSpans = document.querySelectorAll('.track-list span');
+  const trackContents = document.querySelectorAll('.track-content');
+  let currentAudio = null;
+
+  function showTrack(trackId) {
+    trackContents.forEach(tc => {
+      tc.style.display = tc.id === trackId ? 'block' : 'none';
+    });
+
+    trackSpans.forEach(ts => {
+      ts.classList.toggle('active', ts.dataset.track === trackId);
+    });
+
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+
+    currentAudio = document.querySelector(`#${trackId} audio`);
+  }
+
+  trackSpans.forEach(ts => {
+    ts.addEventListener('click', () => showTrack(ts.dataset.track));
+  });
+
+  showTrack('track01');
+</script>
+
+</body>
+</html>
